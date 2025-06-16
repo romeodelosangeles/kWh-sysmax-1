@@ -1,0 +1,37 @@
+services:
+  web:
+    build: .
+    container_name: sysmax_kWh
+    ports:
+      - "8088:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - sysmax
+
+  mysql:
+    image: mysql:8.0.36
+    container_name: sysmax_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: BDPS
+      MYSQL_USER: smUser
+      MYSQL_PASSWORD: smpw
+    ports:
+      - "3309:3306"
+    networks:
+      - sysmax
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: smPhpMyAdmin
+    restart: always
+    ports: 
+      - "8089:80"
+    environment:
+      PMA_HOST: sysmax_mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+networks:
+  sysmax:
