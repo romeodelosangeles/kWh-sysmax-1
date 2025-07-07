@@ -9,39 +9,11 @@ $options = [
 
 $tuya = new TuyaCloud($options);
 try {
-
-  /*$response = $tuya->getDevice('6520fc0a00a365c22als9f');
-  echo '<pre>';
-    print_r($response);
-  echo '</pre>';
-  
-
-$commands = [
-  "commands" => [
-    [
-      "code" => "switch",
-      "value" => true // cambia a false para apagar
-    ]
-  ]
-];
-
-$response = $tuya->setDevice('6520fc0a00a365c22als9f', $commands);
-
-echo '<pre>';
-print_r($response);
-echo '</pre>';
-*/
-  $response = $tuya->getDevice('6520fc0a00a365c22als9f');
+    $response = $tuya->getDevice('65e6a732254c5669aceikp');
     $kWh = $response['result'][0];
     $status = $response['result'][10];
-    $tempCurrent = $response['result'][13];
-/*foreach ($response['result'] as $dp) {
-  if ($dp['code'] === 'total_forward_energy') {
-    echo "Energía total consumida: {$dp['value']} kWh\n";
-  }
-}*/
-
-
+    $tempCurrent = $response['result'][11];
+    // echo (json_encode($tempCurrent, JSON_PRETTY_PRINT));
 } catch (Exception $e) {
   echo 'Error: ' . $e->getMessage();
 }

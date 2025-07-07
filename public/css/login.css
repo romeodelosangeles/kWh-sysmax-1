@@ -1,0 +1,93 @@
+html {
+  height: 100%;
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.login-box img {
+  width: 100%;
+  padding: 1em;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--top-bar_color);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--top-bar_color);
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: var(--sysmax-blue);
+  font-size: 12px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--sysmax-blue);
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+.login-box .user-box button{
+  margin-top: .2em;
+    width: 8em;
+    height: 2em;
+    font-size: 16px;
+    color: var(--sysmax-blue2);
+    transition-duration: 0.4s;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+}
+
+.login-box .user-box button:hover{
+    background-color: var(--sysmax-blue2);
+    color: var(--txt-color);
+    transition: ease-in-out;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.login-spanErrorMessage{
+  color: var(--sysmax-error);
+  font-size: large;
+}

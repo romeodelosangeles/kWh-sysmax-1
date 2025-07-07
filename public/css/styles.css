@@ -16,6 +16,8 @@
   --borderbottom-color: #3c3c3c;
   --sysmax-blue: #65C4D9;
   --sysmax-blue1: #6BB2DB;
+  --sysmax-blue2: #0077b6;
+  --sysmax-error: #ff6961;
 }
 
 html {
@@ -251,6 +253,15 @@ html {
 
 .sysmax-link:hover {
   color: var(--sysmax-blue);
+}
+
+.centerItems{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hidden{
+  display: none;
 }
 
 @media (min-width: 280px) and (max-width: 425px) {

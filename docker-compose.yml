@@ -8,6 +8,8 @@ services:
       - .:/var/www/html
     networks:
       - sysmax
+    depends_on:
+      - mysql
 
   mysql:
     image: mysql:8.0.36
@@ -33,5 +35,10 @@ services:
       PMA_PORT: 3306
       PMA_USER: root
       PMA_PASSWORD: rootpass
+    networks:
+      - sysmax
+    depends_on:
+      - mysql
+
 networks:
   sysmax:

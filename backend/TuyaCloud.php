@@ -112,28 +112,43 @@ class TuyaCloud {
   }
 
 
-  public function getScenes() {
+public function getDevices($pageSize = 20, $pageNo = 1, $schema = null) {
+  $queryParams = [
+    'page_size' => $pageSize,
+    'page_no' => $pageNo
+  ];
 
-    $spaces = $this->sendRequest('/v2.0/cloud/space/child', 'GET');
-    if ($spaces['success'] != 1) throw "[tuyacloud] An error occured with space/child: ".$spaces['error_msg'];
-
-    $spaces = $spaces['result']['data'];
-    $ret = [];
-    foreach($spaces as $spaceId) {
-
-      $scenesDetails = $this->sendRequest('/v2.0/cloud/scene/rule?space_id='.$spaceId, 'GET');
-      if ($scenesDetails['success'] != 1) throw "[tuyacloud] An error occured with scene/rule?space_id=".$spaceId.": ".$scenesDetails['error_msg'];
-      foreach($scenesDetails['result']['list'] as $scenes) {
-        array_push($ret, $scenes);
-      }
-    }
-    return $ret;
+  if ($schema) {
+    $queryParams['schema'] = $schema;
   }
 
+  $query = http_build_query($queryParams);
+  $path = "/v1.0/devices?$query";
 
-  public function startScene($sceneId) {
-    if (!isset($sceneId)) throw "[tuyacloud] You have to pass the `scene_id` as an argument to this function 'startScene'.";
-    return $this->sendRequest('/v2.0/cloud/scene/rule/'.$sceneId.'/actions/trigger', 'POST');
-  }
+  return $this->sendRequest($path, 'GET');
+}
+  // public function getScenes() {
+
+  //   $spaces = $this->sendRequest('/v2.0/cloud/space/child', 'GET');
+  //   if ($spaces['success'] != 1) throw "[tuyacloud] An error occured with space/child: ".$spaces['error_msg'];
+
+  //   $spaces = $spaces['result']['data'];
+  //   $ret = [];
+  //   foreach($spaces as $spaceId) {
+
+  //     $scenesDetails = $this->sendRequest('/v2.0/cloud/scene/rule?space_id='.$spaceId, 'GET');
+  //     if ($scenesDetails['success'] != 1) throw "[tuyacloud] An error occured with scene/rule?space_id=".$spaceId.": ".$scenesDetails['error_msg'];
+  //     foreach($scenesDetails['result']['list'] as $scenes) {
+  //       array_push($ret, $scenes);
+  //     }
+  //   }
+  //   return $ret;
+  // }
+
+
+  // public function startScene($sceneId) {
+  //   if (!isset($sceneId)) throw "[tuyacloud] You have to pass the `scene_id` as an argument to this function 'startScene'.";
+  //   return $this->sendRequest('/v2.0/cloud/scene/rule/'.$sceneId.'/actions/trigger', 'POST');
+  // }
 }
 ?>
