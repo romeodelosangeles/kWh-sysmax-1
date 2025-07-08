@@ -13,7 +13,7 @@ try {
     $kWh = $response['result'][0];
     $status = $response['result'][10];
     $tempCurrent = $response['result'][11];
-    // echo (json_encode($tempCurrent, JSON_PRETTY_PRINT));
+    echo (json_encode($response, JSON_PRETTY_PRINT));
 } catch (Exception $e) {
   echo 'Error: ' . $e->getMessage();
 }

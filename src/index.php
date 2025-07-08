@@ -2,7 +2,8 @@
   session_name('sysmax-tuya');
   session_start();
   if (!isset($_SESSION['userName'])) {
-      header("Location: src/login.php");
+      header("Location: /src/login.php");
+      exit;
   }
 ?>
 <!DOCTYPE html>
@@ -22,6 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="../public/img/sysmax_logo_transp.png" type="image/x-icon">
   <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/dataTable.css">
   <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
   <title>Sysmax Tecnología S.A. de C.V.</title>
 </head>
@@ -35,12 +37,13 @@
         }else{
           include_once "components/general/singleBreakerData.php";
         }
-        ?>      
+        ?>
       </main>
       <?php include_once 'components/general/footer.php'?>  
     </div>
         <script src="public/js/startSetUp.js"></script>
   </body>
+  <script src="../public/js/dataTable.js"></script>
   <script type="module">
     import { closeSession } from "../public/js/general.js";
     window.closeSession = closeSession;
